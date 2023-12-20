@@ -1,0 +1,83 @@
+{% extends 'contentCreator/base.html' %}
+{% load static %}
+{% block content %}
+
+    
+{% block css_form %}
+{% endblock css_form %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'creator/lectureDetail.css' %}">
+
+{% endblock add_css %}
+
+<div class='f_c' style="width: 100%; height: 100%;  background: #f3f4f6; border: 1px solid black;">
+  <div id = 'lecture_heading' class="f_r">
+
+      <div id="lecture_heading_container">
+        <h1>{{lecture.title|safe}}</h1>
+      </div>
+  </div>
+
+  <div id="lecture_buttons_container" class="f_c_space_between">
+    <a href="{% url 'add_common_test' lecture.id %}" class="lecture_bt">Add common question</a>
+    <a href="{% url 'add_choice_test' lecture.id %}" class="lecture_bt">Add choice question</a>
+    <a href="{% url 'update_lecture' lecture.id %}" class="lecture_bt">Update lecture</a>
+    <a href="{% url 'delete_lecture' lecture.id %}" class="lecture_bt">Delete lecture</a>
+  </div>
+  <div id="course_content_container" >
+    {{lecture.paragraph|safe }}
+
+
+
+
+
+  
+  {% if tests is not None %}
+
+        
+      
+      {% for test in tests %}
+        <div class="test_container f_c_start">
+         <p>{{test.question|safe}}</p>
+          {% if test.image %}
+            <img src="{{test.image.url}}" alt="picture" style="max-width: 700px; max-height: 300px;">
+          {% endif %}
+          <h1>Answer</h1>
+          <p>{{test.answer}}</p>
+          <a href="{% url 'delete_question' test.id lecture.id %}" style="font-size: 20px; color: #222222; padding: 1rem 2rem; border: 2px solid black; border-radius: 10px;">Delete</a>
+
+        </div>
+      {% endfor %}
+      
+      {% if choice_tests %}
+      <h1 style="margin-top: 2rem;">Choice Tests </h1>
+      {% endif %}
+        
+
+      {% for choice_test in choice_tests %}
+    <div class="test_container f_c_start">
+        <p>{{ choice_test.question|safe }}</p>
+        {% if choice_test.image %}
+            <img src="{{ choice_test.image.url }}" alt="picture" style="max-width: 700px; max-height: 300px;">
+        {% endif %}
+        <h1>Answer</h1>
+        {% for answer in choice_test.answer_set.all %}
+            <p>{{ answer.answer|safe }}</p>
+        {% endfor %}
+        <a href="{% url 'delete_choice_question' choice_test.id lecture.id %}">Delete</a>
+    </div>
+{% endfor %}
+
+     
+
+
+  {% endif %}
+    
+
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

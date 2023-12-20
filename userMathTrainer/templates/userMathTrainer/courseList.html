@@ -1,0 +1,49 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+
+{% block add_css %}
+    
+{% endblock add_css %}
+    
+
+{% block content %}
+<form action="{% url 'search_course' %}" method="post" id='course_search_form' class="f_r_space_evenly">
+    {% csrf_token %}
+    <input type="search" id="courses_search_input" name="searched" placeholder="Name of the course">
+    <div class="f_r_space_around">
+        <div class="f_r_space_around">
+            <label for="free_courses_input">Free</label>
+            <input type="checkbox" id="free_courses_input" name="free_courses">
+        </div>
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block all_courses %}
+    <div class="f_c_start" style="width: 60%; min-height: 30rem; justify-content: start;">
+    {% if searched %}
+    
+        <h1>You searched for {{searched}}</h1>
+        <div id="courses_list" style="width: 100%; margin-top: 2rem;">
+            
+            {% for course in courses  %}
+            <a href="{% url 'user_course_detail' course.id %}" style="width: 100%; margin: 1rem;">
+                <div class="f_r_space_around" style="width: 100%; border: 1px solid rgb(204, 201, 201); padding: 1rem 2rem; border-radius: 10px;">
+                 <h2>{{course}}</h2>
+                 <!-- <p>{{course.description|safe}}</p>  -->
+                 <img src="{{ course.course_image.url }}" alt="" style="width: 30px; height: 30px;">
+                </div>
+            </a>
+            {% endfor %}
+                
+        </div>
+        {% else %}
+        <h1>You forgot to fill the form!! </h1>
+    {% endif %}
+</div>
+
+{% endblock all_courses %}

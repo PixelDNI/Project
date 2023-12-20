@@ -1,0 +1,48 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+    
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'user/css/profile.css' %}">
+{% endblock add_css %}
+
+
+{% block content %}
+<div id='profile_main' class="f_r">
+    <div class="f_r_space_around" style="width: 60%; height: 80%; align-items: flex-start; margin-top: 3rem; padding: 1rem 2rem;">
+        
+        <form action='' method="post" class="f_c"  enctype="multipart/form-data" style="height: 100%; width: 30%; box-shadow: 0px 4px 15px 5px rgba(34, 60, 80, 0.17);">
+            {% csrf_token %}
+            {{ form.as_p }}
+                 
+            {% if profile.profile_photo %}
+                <img src="{{ profile.profile_photo.url }}" style="width: 80px; height: 80px; margin-top: 1rem; border-radius: 50%;"; alt="">
+            {% else %}
+                <div id='profile_photo' class="f_c" style="width: 30px; height: 55px; margin-top: 1rem; border-radius: 50%; background: orange;">
+                    <div><p>{{ user.username.0 }}</p></div>
+                </div>
+            {% endif %}
+        
+            <div id="profile_data" class="f_c_space_around" style="height: 50%;">
+                <p>{{ user.email }}</p>
+                <p>{{ subscriber_count }} Subscribers</p>
+                <a href="{% url 'update_profile' user.id %}"><p>Settings</p></a>
+            </div>
+            <button style="font-size: 18px; color: white; padding: 1rem 2rem; background: #4d4d4d; border-radius: 20px;">Save</button>
+        </form>
+                
+        </div>
+            <!-- <div class="f_c">
+                <h1>{{user.username}}</h1>
+                <p>Activity over the past year</p>
+                <div id="activity_board" class="f_c">
+                    <h1>Coming Soon...</h1>
+                </div> -->
+
+        
+
+    </div>
+</div>
+{% endblock content %}
+    

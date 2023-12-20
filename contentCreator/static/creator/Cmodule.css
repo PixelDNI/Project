@@ -1,0 +1,48 @@
+.module_container{
+    width: 80%;
+    border: 1px solid rgb(193, 199, 193);
+    padding: 0 2rem;
+    margin-top: 2rem;
+}
+
+.module_container li{
+    list-style-type: none;
+    font-weight: bolder;
+    color: rgb(119, 97, 97);
+}
+
+.lecture_container{
+    width: 80%;
+    border: 1px solid rgb(193, 199, 193);
+    display: flex;
+    flex-direction: row;
+    padding: 0 0.5rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+.edit_icon {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    position: relative;
+    top: 11px;
+    display: none;
+    left: 15px;
+}
+
+.module_container:hover + .edit_icon {
+    display: block;
+}
+#course_content_container{
+    height: 100%;
+}
+.add_lecture_bt{
+    font-size: 20px;
+    padding: 5px 10px;
+    color: white;
+    background: #269e26;
+
+    margin-top: 0px;
+}

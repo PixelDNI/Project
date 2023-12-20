@@ -1,0 +1,119 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+
+
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'user/css/CmyEducation.css' %}">
+{% endblock add_css %}
+    
+
+
+
+
+{% block content %}
+<div id="my_education_main" class="f_r_start">
+    <div id="my_education_nav" class="f_c">
+        <img src="{% static 'user\images\my_education.png' %}" alt="pic">
+        <div class="f_c_start" style="padding: 1rem 2rem;">
+            <div class="f_r nav_elem">
+                <img src="" alt="">
+                <h1>My education</h1>
+            </div>
+
+            <div class="f_r">
+                <img src="" alt="">
+                <a href="{% url 'user_courses' user.id %}"><h2>Courses</h2></a>
+            </div>
+
+            <div class="f_r">
+                <img src="" alt="">
+                <h2>Current courses</h2>
+            </div>
+
+            <div class="f_r">
+                <img src="" alt="">
+                <a href="{% url 'favorite_courses' user.id %}"><h2>Favorites</h2></a>
+            </div>
+
+            <div class="f_r">
+                <img src="" alt="">
+                <a href="{% url 'subscriptions' user.id %}"><h2>Subscriptions</h2></a>
+            </div>
+
+            <div class="f_r">
+                <img src="" alt="">
+                <a href="{% url 'archive' user.id %}"><h2>Archive</h2></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="my_edu_all_courses_block" class="f_r_start" style='position: relative; bottom: 8rem;' >
+       
+    
+    {% for profile in profiles %}
+        {% if profile.author_profile_image %}
+        <a href=" {% url 'author_profile' profile.author.id %}">
+            <img src="{{profile.author_profile_image.url}}" alt="" style="width: 70px; height: 7 0px; border-radius: 10px; border-radius: 50%;">
+        </a>
+        {% else %}
+        <a href=" {% url 'author_profile' profile.author.id %}">
+            <div style="width: 30px; height: 30px; background: pink;">
+                <p>{{profile.author.username.0}}</p>
+            </div>
+        </a>
+    
+        {% endif %}
+    {% endfor %}
+        
+     
+            
+
+
+        <!-- {% for course in mathcourse_list %}
+            <a href="{% url 'read_course' course.id %}" class="course_card f_r_space_between"  >
+                
+                    <div class="card_content f_c_space_between">
+                        <div class=" f_c_start " style="width: 100%;">
+                            <h1>
+                                {{course.title}}
+                            </h1>
+                            <h3>
+                               by {{course.author.username}}
+                            </h3>
+                        </div>
+                            <div class="f_c_start" style="width: 100%; margin-top: 20px;" >
+                            <h5>
+                                {{course.course_length}} hours
+                            </h5>
+                            <h2>
+                                
+                                {% if course.price == 0 %}
+                                    Free
+                                {% else %}
+                                {{course.price}} $
+                                {% endif %}
+                                    
+                              
+                                </h2>
+                            </div>
+                       
+                    </div>
+    
+                    <div class="course_card_image">
+                        <img src="{{ course.course_image.url }}" style="border-radius: 10px;" alt="img">
+                    </div>
+                  
+                
+    
+                
+             </a>
+    
+        {% endfor %} -->
+    </div>
+</div>
+
+{% endblock content %}
+    

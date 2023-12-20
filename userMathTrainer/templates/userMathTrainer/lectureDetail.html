@@ -1,0 +1,20 @@
+{% extends 'userMathTrainer/base.html' %}
+
+{% block title %}
+    lecture Detail
+{% endblock %}
+
+<h1>
+    Lecture Detail
+</h1>
+{% block lecture_detail %}
+    <h1>
+        {{lecture.title}}
+    </h1>
+    <h2>
+        {{lecture.description}}
+    </h2>
+    <p>
+        {{lecture.paragraph}}
+    </p>
+{% endblock %}

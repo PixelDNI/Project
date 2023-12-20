@@ -1,0 +1,93 @@
+{% extends 'contentCreator/base.html' %}
+{% load static %}
+{% block css_form %}
+    <link rel="stylesheet" href="{% static 'creator/CcreateTest.css' %}">
+{% endblock css_form %}
+{% block content %}
+<div id='choice_test_container' class="f_c" style="width: 100%;">
+    <form action="" method="post" id="test_choice_form" class="f_c" style="margin-top: 5rem;">
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        <div class="f_r_space_between" style="width: 100%;"><div class=""></div><button>Save</button></div>
+    </form>
+    <!-- {% if choice_test.explanation is None %}
+        <p>Explanation does not exist</p>
+    {% else %}
+        <p>{{ choice_test.explanation }}</p>
+    {% endif %} -->
+    <!-- <div class="f_c" style="width: 60%; padding: 3rem; background: white;"> -->
+        <div id='answers_container' class="f_c" >
+            <div class='f_r'style="width: 100%;"><h1>Answers:</h1></div>
+            {% for answer in answers %}
+                
+                {% if answer.is_right == True %}
+                    <div id='answer-{{ answer.id }}' class='f_r_space_between' style="width: 90%; margin: 1rem 10px;">
+                        <a class='test_detail'href="{% url 'update_answer' answer.id %}">
+                            <div class="right_answer"><p>{{ answer|safe }}</p></div>
+                        </a> 
+                        <a href="{% url 'delete_answer' answer.id %}" class="bin delete-answer" >
+                            <div style="width: 40px; height: 40px; background: red; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px;">
+                                <img src="{% static 'images/bin.png' %}">
+                            </div>
+                        </a>
+                    </div> 
+                {% else %}
+                    <div id='answer-{{ answer.id }}' class='f_r_space_between' style="width: 90%; margin: 1rem 10px;">
+                        <a  class='test_detail' href="{% url 'update_answer' answer.id %}">
+                            <div class="answer"><p>{{ answer|safe }}</p></div>
+                        </a> 
+                        <a href="{% url 'delete_answer' answer.id %}" class="bin delete-answer"  >
+                        
+                                <div style="width: 40px; height: 40px; background: red; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px;">
+                                    <img src="{% static 'images/bin.png' %}">
+                                </div>
+                
+                        </a>
+                    </div>
+                {% endif %}
+           
+                
+            
+            {% endfor %}
+            <div class="f_r_space_between" style="width: 100%;"> <div></div> <a id='add_answer' href="{% url 'add_answer' choice_test.id %}">Add answer</a></div>
+        </div>
+    </div>
+</div>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <script>
+$('.delete-answer').on('click', function(event) {
+    event.preventDefault();
+
+    var answerId = $(this).data('answerId');
+    var answerContainer = $('#answer-' + answerId);
+
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'POST',
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+        success: function() {
+            answerContainer.remove();
+        }
+    });
+});
+</script> -->
+<!-- 
+<script>
+    function deleteAnswer(event) {
+        event.preventDefault();  // Prevent the default link behavior
+    
+        const answerId = event.target.dataset.answerId;
+        const divElement = document.getElementById('answer-' + answerId);
+        if (divElement) {
+            divElement.style.display = 'none';
+        }
+    }
+    
+    // Add event listeners to delete buttons
+    const deleteButtons = document.getElementsByClassName('delete-answer');
+    for (const button of deleteButtons) {
+        button.addEventListener('click', deleteAnswer);
+    }
+    </script> -->
+{% endblock content %}

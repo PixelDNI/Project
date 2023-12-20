@@ -1,0 +1,73 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<form action="{% url 'search_course' %}" method="post" id='course_search_form' class="f_r_space_evenly">
+    {% csrf_token %}
+    <input type="search" id="courses_search_input" name="searched" placeholder="Name of the course">
+    <div class="f_r_space_around">
+        <div class="f_r_space_around">
+            <label for="free_courses_input">Free</label>
+            <input type="checkbox" id="free_courses_input" name="is_free">
+        </div>
+        <button type="submit">Search</button>
+    </div>
+</form>
+{% endblock content %}
+
+{% block all_courses %}
+
+<div style="width: 50%; height: 7rem;"><img src="{% static 'user/images/catalog_banner.png' %}" alt="" style="width: 100%; height: 100%;"></div>
+<div class='f_r'  style="width: 100%;">
+<div class='f_c'style='width: 7rem; height: 17rem;'> {% if page_obj.has_previous %}
+      <a href='{% url "courses" %}?page={{ page_obj.previous_page_number }}' class="pg_previous_bt pg_bt"><img src="{% static 'user/images/arrow.png' %}" alt=""> </a>
+    {% endif %}
+</div>
+
+<div id="all_courses_block" class="f_r_start" style="flex-wrap: wrap; align-items: flex-start;">
+    {% for course in courses %}
+        <a href="{% url 'user_course_detail' course.id %}" class="course_card f_r_space_between" style="margin: 1rem 1rem;  "   >
+            
+                <div class="card_content f_c_space_around" style="">
+                    <div class=" f_c_start " style="width: 100%;">
+                        <h1 style="max-width: 160px; height: 100px;  overflow: hidden; white-space: normal; text-overflow: ellipsis;">
+                            {{course.title}}
+                        </h1>
+                        <div>
+                            <h3>
+                            by {{course.author.username}} 
+                            </h3>
+                        </div>
+                    </div>
+                        <div class="f_c_start" style="width: 100%; margin-top: 20px;" >
+                        <h5>
+                            {{course.course_length}} hours
+                        </h5>
+                        <h2>
+                            {{course.price}} $
+                            </h2>
+                        </div>
+                   
+                </div>
+
+                <div class="course_card_image">
+                    <img src="{{ course.course_image.url }}" style="border-radius: 10px;" alt="img">
+                </div>
+              
+            
+
+            
+         </a>
+    {% endfor %}
+    </div>
+    <div class='f_c'style='width: 7rem; height: 17rem;'>    {% if page_obj.has_next %}
+
+    <a href='{% url "courses" %}?page={{ page_obj.next_page_number }}' class="pg_next_bt pg_bt" > <img src="{% static 'user/images/arrow.png' %}" alt=""></a>
+  {% endif %}
+    </div>
+
+</div>
+{% endblock all_courses %}
+    

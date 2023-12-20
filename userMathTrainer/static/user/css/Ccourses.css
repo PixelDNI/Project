@@ -1,0 +1,100 @@
+
+#all_courses_block{
+    width:  60%;
+    /* border: 1px solid black; */
+    margin-top: 2rem;
+    height: 30rem;
+}
+.course_card{
+    box-shadow: 4px 3px 25px 4px rgba(34, 60, 80, 0.18);
+    width: 25%;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 20px;
+
+
+}
+
+.course_card h1{
+    font-size: 22px;
+    font-weight: bolder;
+    flex-wrap: wrap;
+}
+.course_card h3{
+    font-size: 15px;
+}
+.card_content{
+    /* border: 1px solid black; */
+    width: 60%;
+    padding: 10px;
+}
+.course_card_image img{
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+}
+.course_card_image{
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+    /* border: 2px solid black; */
+}
+
+.course_card:hover{
+    transform: scale(1.01);
+    box-shadow: 4px 3px 25px 0px rgba(34, 60, 80, 0.35);
+}
+
+#course_search_form{
+    margin: 3rem 0;
+    width: 60%;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 0;
+    background: #f3f4f6;
+
+}
+#course_search_form div{
+    width: 30%;   
+}
+#courses_search_input{
+    font-size: 17px;
+    width:  30rem;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    background-color: #ffffff;
+    border: none;
+    border: 1px solid #cccccc;
+
+}
+
+#course_search_form button{
+    background: #54ad54;
+    padding: 10px 2rem;
+    font-size: 18px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+#course_search_form label{
+    font-size: 20px;
+}
+
+
+.pg_next_bt{
+    position: relative;
+    left: 50px;
+}
+
+.pg_previous_bt{
+    position: relative;
+    left: -50px;
+}
+.pg_previous_bt img{
+    rotate: 180deg;
+    width: 50px;
+    height: 50px;
+}
+.pg_next_bt img{
+    width: 50px;
+    height: 50px;
+}

@@ -1,0 +1,26 @@
+
+
+.course_button{
+    font-size: 25px; 
+    background: #222222; 
+    color: white; 
+    padding: 1rem 2rem; 
+    border-radius: 10px; 
+    margin-top: 2rem;
+}
+textarea{
+    width: 40rem;
+    height: 4rem;
+    border-radius: 20px;
+    border: 1px solid rgb(156, 155, 155);
+    padding: 1rem 2rem;
+}
+label{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+form button{
+    
+}

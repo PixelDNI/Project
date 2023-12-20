@@ -1,0 +1,12 @@
+{% extends 'contentCreator/base.html' %}
+
+
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form.media}}
+    {{form.as_p}}
+    <button>Save</button>
+</form>
+{% endblock %}

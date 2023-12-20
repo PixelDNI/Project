@@ -1,0 +1,117 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block css_form %}
+{% endblock css_form %}
+
+{% block add_css %}
+
+
+<link rel="stylesheet" href="{% static 'creator/KlectureDetail.css' %}">
+{% endblock add_css %}
+
+{% block content %}
+
+<div class='f_c' style="width: 100%; height: 100%;  background: #f3f4f6;">
+  <div id = 'lecture_heading' class="f_r_start">
+
+      <div id="lecture_heading_container">
+        <h1>{{lecture.title}}</h1>
+      </div>
+      <div id="list_of_lectures" class="f_r_start" style="">
+        {% for lecture_module in lectures_in_module %}
+        
+        {% if lecture_module.is_passed %}
+        <a href="{% url 'read_lecture' lecture_module.id %}">
+          <div class="f_c" style="background-color: #54ad54;">
+          <p>{{ forloop.counter }}</p>
+          </div>
+        </a>
+        {% else %}
+        <a href="{% url 'read_lecture' lecture_module.id %}">
+          <div class="f_c" style="background-color: rgb(189, 189, 189);">
+          <p>{{ forloop.counter }}</p>
+          </div>
+        </a>
+        {% endif %}
+          
+    
+      {% endfor %}
+      </div>
+</div>
+
+
+  <div id="course_content_container" >
+    {{lecture.paragraph|safe }}
+
+
+
+
+
+    {% if common_tests or choice_tests is not None %}
+    <form method='post' id="test_form">
+    {% csrf_token %}
+
+  
+    
+    {% if common_tests is not None %}
+        {% for test in common_tests %}
+            <div class="test_container f_c_start">
+                <p>{{ test.question|safe }}</p>
+
+                <input type="text" name="answer_{{ test.id }}" placeholder="Write your answer" >
+
+        {% endfor %}
+    {% endif %}
+
+    {% if choice_tests is not None %}
+        {% for test in choice_tests %}
+            <div class="test_container f_c_start">
+                <p>{{ test.question|safe }}</p>
+                
+                {% for answer in answers %}
+                    {% if answer.choice_test == test %}
+                        <div class="f_r_space_between answer_container" style="margin-top: 10px;">
+                            {{ answer|safe }}
+     
+                            <input type="checkbox" name="choice_{{ answer.id }}" value="{{ answer.id }}" style="width: auto; vertical-align: middle;" >
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+        <div class="f_r_space_between">
+            <div></div>
+            <button>Send</button>
+        </div>
+    </form>
+      {% endif %}
+          <div class='f_r' style="width: 100%; margin-top: 2rem;">
+            
+            {% if next_lecture %}
+              <a href="{% url 'next_lecture' lecture.id next_lecture.id %}" id="lecture_next_bt">Next</a>
+            {% elif next_module %}
+            <a href="{% url 'next_module' lecture.id %} " id="lecture_next_bt">Next Module</a>
+            {% else %}
+            <a href="{% url 'in_archive' lecture.id %} " id="lecture_next_bt">Finish Course</a>
+            {% endif %}
+
+          
+     
+        </div>
+
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock footer %}

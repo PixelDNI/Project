@@ -1,0 +1,118 @@
+#paragraph_body_container{
+   
+}
+
+#lecture_buttons_container{
+
+    margin-top: 2rem;
+    width: 10rem;
+    
+
+}
+
+#add_common_q_bt{
+
+    padding: 1rem 2rem;
+    background-color: lightskyblue;
+}
+#add_choice_q_bt{
+    padding: 1rem 2rem;
+    background-color: aqua;
+}
+
+#test_form input{
+    width: 30rem;
+    font-size: 17px;
+    padding: 10px 1rem;
+
+    
+}
+#test_form button{
+    font-size: 20px;
+    padding: 10px 3rem;
+    color: white;
+    background: #54ad54;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+#test_form button:hover{
+    transform: scale(1.1);
+    background-color: #5ec55e;
+}
+#test_form button:active{
+    transform: scale(0.9);
+    background: #418641;
+    
+}
+
+#test_form img{
+    margin: 30px 0;
+}
+
+.radio_input{
+    width: 0;
+    height: auto;
+    font-size: 0;
+    padding: 0;
+
+}
+.answer_container{
+    width: 30rem;
+    padding: 10px 1rem;
+    border: 1px solid rgb(66, 66, 66);
+
+}
+.answer{
+    width: 100%;
+    font-size: 17px;
+    border: 1px solid rgb(71, 71, 71);
+    /* padding: 10px 1rem; */
+
+} 
+.answer_container p{
+    width: 90%;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.check_bt{
+    width: 30px;
+    height: 30px;
+}
+body{
+    background: #f3f4f6;
+}
+
+#list_of_lectures{
+    padding: 1rem 1rem;
+
+}
+
+
+#list_of_lectures div{
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    
+    
+}
+
+#list_of_lectures a{
+    /* border: 1px solid black; */
+    padding: 0;
+    width: auto;
+    height: auto;
+    margin: 0 5px;
+    
+}
+#lecture_next_bt{
+    padding: 1rem 3rem;
+    background:#54ad54;
+    color: white;
+    font-size: 20px;
+
+    border-radius: 10px;
+}

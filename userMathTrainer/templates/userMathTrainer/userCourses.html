@@ -1,0 +1,43 @@
+{% extends 'userMathTrainer/base.html' %}
+
+
+
+{% block all_courses %}
+    <a href="{% url 'favorite_courses' user.id %}">Favorites</a>
+    <h1 style="margin: 5rem auto;">All your purchased courses </h1>
+<div id="all_courses_block" class="f_r_space_between" style="flex-wrap: wrap; align-items: flex-start;">
+    {% for course in mathcourse_list %}
+        <a href="{% url 'user_course_detail' course.id %}" class="course_card f_r_space_between" style="margin: 1rem 0;"  >
+            
+                <div class="card_content f_c_space_between">
+                    <div class=" f_c_start " style="width: 100%;">
+                        <h1>
+                            {{course.title}}
+                        </h1>
+                        <h3>
+                           by {{course.author.username}}
+                        </h3>
+                    </div>
+                        <div class="f_c_start" style="width: 100%; margin-top: 20px;" >
+                        <h5>
+                            {{course.course_length}} hours
+                        </h5>
+                        <h2>
+                            {{course.price}} $
+                            </h2>
+                        </div>
+                   
+                </div>
+
+                <div class="course_card_image">
+                    <img src="{{ course.course_image.url }}" style="border-radius: 10px;" alt="img">
+                </div>
+              
+            
+
+            
+         </a>
+
+    {% endfor %}
+    </div>
+{% endblock all_courses %}

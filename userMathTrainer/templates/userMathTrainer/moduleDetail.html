@@ -1,0 +1,13 @@
+{% extends 'userMathTrainer/base.html' %}
+
+{% block module %}
+<h1>Block Module</h1>
+<div>
+    {% for lecture in lectures_list %}
+        <a href="{% url 'lecture_detail' lecture.id %}"><h1>{{lecture.title}}</h1></a>
+        <!-- <a href="#"><p>{{lecture.description}}</p></a>
+        <a href="#"><p>{{lecture.paragraph}}</p></a> -->
+    {% endfor %}
+
+</div>
+{% endblock %}  

@@ -1,0 +1,29 @@
+#profile_main{
+    width: 100%;
+    height: 40rem;
+}
+
+#profile_photo{
+    background: rgb(22, 197, 22);
+    padding: 1rem 2rem;
+    border-radius: 20px;
+}
+#profile_photo{
+    font-size: 50px;
+
+}
+#profile_data{
+    margin-top: 2rem;
+}
+
+#activity_board{
+    width: 500px;
+    height: 300px;
+    background: #adaaaa;
+    margin-top: 2rem;
+    border-radius: 20px;
+}
+
+#profile_data p{
+    font-size: 17px;
+}

@@ -1,0 +1,24 @@
+
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user/css/signUp.css' %}">
+{% endblock add_css %}
+    
+
+
+{% block content %}
+<div class="f_c" style="width: 100%; min-height: 40rem;">
+<form method="post" id='sign_up_form' style="padding: 1rem 2rem;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">login</button> 
+</form>
+</div>
+<div >
+
+</div>
+
+{% endblock content %}
+    

@@ -1,0 +1,16 @@
+#lecture_buttons_container{
+
+    width: 15rem;
+    height: 15rem;
+    position: relative;
+    right: 50rem;
+    margin-top: 5rem;
+}
+
+.lecture_bt{
+    color: white;
+    font-size: 20px;
+    padding: 1rem 2rem;
+    background-color: #222222;
+    border-radius: 10px;
+}

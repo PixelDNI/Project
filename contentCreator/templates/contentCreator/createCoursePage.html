@@ -1,0 +1,19 @@
+{% extends 'contentCreator/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    
+{% endblock content %}
+
+{% block form %}
+    <div class="f_c_space_around">
+        <h1 style="margin: 2rem auto;">Create Course</h1> 
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <button>Save</button>
+        </form>
+    </div>
+{% endblock form %}

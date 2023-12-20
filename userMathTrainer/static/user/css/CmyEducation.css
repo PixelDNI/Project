@@ -1,0 +1,30 @@
+#my_education_main h2{
+    font-size: 20px;
+}
+
+
+body{
+    background: #fcfcfc;
+}
+
+#my_education_main{
+    background: #fcfcfc;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#my_education_nav{
+    margin: 2rem 4rem; padding: 0 10rem;
+    min-height: 40rem;
+    justify-content: start;
+}
+#my_edu_all_courses_block{
+    width: 60%;
+    height: 100%;
+    margin-top: 10rem;
+    background-color: white;
+}
+
+#my_education_nav div{
+    margin: 10px 0;
+}

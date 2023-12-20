@@ -1,0 +1,49 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+
+{% block css_form %}
+{% endblock css_form %}
+
+{% block add_css %}
+
+
+<link rel="stylesheet" href="{% static 'creator/KlectureDetail.css' %}">
+{% endblock add_css %}
+
+
+{% block content %}
+<a href="{% url 'read_lecture' lecture %}">Back to the lecture</a>
+
+<div class="f_r_space_around" style="width: 80%;">
+    <div class="f_c_start" style="width: 70%; margin-top: 10rem;">
+        <h1>All question and their answers</h1>
+        {% for result in question_answer %}
+            <div class="result-container" style="max-width: 70%;">
+                <h3 style="font-size: 20px; font-weight: bolder; margin-top: 1rem;">{{ result.question|safe }}</h3>
+                {% for answer in result.answers %}
+                    <div class="f_r_start" 
+                    style="align-items: center; padding: 0 1rem; border-radius: 10px; width: 30rem; min-height: 3rem; border: 3px solid rgb(6, 180, 6); font-size: 20px; color: rgb(114, 114, 114);"><p >{{ answer.answer|safe }}</p></div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+        
+        <div class="result-container" style="position: relative; bottom: 7rem;">
+            
+            <h3>Your answers</h3>
+            
+            {% for word in user_answer.answers|make_list %}
+            <div style=" margin-top: 1rem; width: 20rem; min-height: 3rem; padding: 0 1rem; border: 1px solid rgb(138, 136, 136); align-items: center; justify-content: center;"> {{ word }} </div>
+            {% endfor %}
+           
+
+        </div> 
+    </div>
+ 
+ 
+  
+{% endblock content %}
+    

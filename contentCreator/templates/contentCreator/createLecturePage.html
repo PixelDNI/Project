@@ -1,0 +1,11 @@
+{% extends 'contentCreator/base.html' %}
+
+{% block content %}
+<h1 style="margin: 2rem auto;">Create Lecture</h1> 
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+

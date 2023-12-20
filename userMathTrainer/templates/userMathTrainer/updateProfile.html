@@ -1,0 +1,14 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static  %}
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'creator/Cform.css' %}">
+{% endblock add_css %}
+    
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>Save</button>
+</form>    
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user/css/courseDetail.css' %}">
+{% endblock add_css %}
+    
+
+{% block title %}
+   Course Detail
+{% endblock %}
+
+
+{% block all_courses %}
+{% endblock %}
+
+
+
+{% block content %}
+<div style="width: 100%;" class="f_c" style="height: 100%; overflow-y: auto;">
+
+    <div id="course_header" class="f_r_space_around" style="">
+        <div style="width: 80%; height: 100%;" class="f_r_space_around">
+            <div id='header_elements_container' class="f_c_space_around">
+                <div id="title_container">
+                    <h1>{{course.title}}</h1>
+                </div>
+                <div id="description_container">
+                    <h3>{{course.description}}</h3>
+                </div>
+                <div class="f_r_space_around" style="width: 5rem; margin-top: 1rem;">
+                    <img src="{% static 'images/clock.png' %}" alt="" style="width: 20px; height: 20px;">
+                    <p>{{course.course_length}} 
+                        
+                        {% if course.course_length > 1 %}
+                            hours
+                        {% else %}
+                            hour
+                        {% endif %}
+                             </p>
+                </div>
+            </div>
+
+            <div>
+                <img src="{{course.course_image.url}}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="f_c" style="position: relative; left: 40rem; margin-top: 2rem;">
+
+          <a href="{% url 'read_lecture' first_lecture.id %}" class="course_button"><img src="{% static 'user/icons/triangle.png' %}" style="width: 30px; height: 30px;"></a>
+          <a href="{% url 'remove_from_favorites' %}" class="course_button"><p>Remove from favorites</p> </a>
+    </div>
+
+    <div id="course_content_container" class="f_c_space_around">
+        {{course.course_content|safe}}
+        <div style="width: 100%;">
+            <h1>Modules</h1>
+            <div class="f_c_start" style="width: 100%;">
+                {% for module in modules %}
+              
+                    <li style="font-size: 30px;">{{ module.title }}</li>
+
+                <div>
+                    {% for lecture in lectures %}
+                        {% if lecture.course_module == module %}
+                        <a href="{% url 'read_lecture' lecture.id %}"><p style="margin-left: 2rem;">{{ lecture.title }}</p></a> 
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

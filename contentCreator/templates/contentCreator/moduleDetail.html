@@ -1,0 +1,21 @@
+{% extends 'contentCreator/base.html' %}
+
+{% block content %}
+
+
+    <h1>{{module.title}}</h1>
+    <div class="f_c">
+        <h1>Lectures:</h1>
+        
+        {% for lecture in lectures %}
+            <a href="{% url 'lecture_detail' lecture.id %}"> <h2> {{lecture.title}} </h2></a>
+        {% endfor %}
+            
+    </div>
+    <div>
+        <a href="{% url 'add_lecture' pk=module.id %}">Add lecture</a>
+        <a href="{% url 'update_module' module.id %}">Update Module</a>
+        <a href="{% url 'delete_module' module.id %}">Delete Module</a>
+    </div>
+{% endblock content %}
+    

@@ -1,0 +1,97 @@
+{% extends 'userMathTrainer/base.html' %}
+{% load static %}
+
+
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'user/css/authorProfile.css' %}">
+{% endblock add_css %}
+    
+
+{% block content %}
+    <div id="author_profile_main">
+        
+        {% if profile.description_image %}
+            <img src="{{profile.description_image.url}}" style='width: 100%;'alt="">
+        {% else %}
+        <div id="picture">
+            
+        </div>
+        {% endif %}
+            
+
+        <div class="f_r_start" style="margin-top: 1rem;">
+            <div id="author_info" class="f_c_space_around">
+                
+                {% if profile.author_profile_image %}
+
+                    <img id="avatar" src="{{profile.author_profile_image.url}}" alt="" >
+                {% endif %}
+                    <p>{{subscribers}} subscribers </p>
+                    <p>{{courses_count}} courses</p>
+                    <p>{{reputation}} reputation scores</p>
+                    
+
+                    {% if user.is_authenticated %}
+                        
+                            {% if is_subscribed %}
+                            <a href="{% url 'unsubscribe' profile.id %}" id="unsubscribe_bt">Unsubscribe</a>
+                            {% else %}
+                            <a href="{% url 'subscribe' profile.id %}" id="subscribe_bt">Subscribe</a>
+                            {% endif %}
+                            
+                        {% else %}
+                        <a href="{% url 'sign_up' %}" id="subscribe_bt">Subscribe</a>
+                    {% endif %}
+                        
+
+             
+                    
+             
+            </div>
+            <div id="author_content" class="f_c_space_around">
+                <h1>{{author.username}}</h1>
+                <div style="margin-top: 2rem;">{{profile.description|safe}}</div>
+                <h1 style="margin: 1rem 0;">Courses</h1>
+                <div class="f_r_space_around" style="flex-wrap: wrap; position: relative; right: 5rem;">
+                    
+                    {% for course in courses %}
+                    <a href="{% url 'user_course_detail' course.id %}" class="course_card f_r_space_between" style="margin: 1rem 1rem; width: 100%;"  >
+                        
+                            <div class="card_content f_c_space_between" style="width: 100%;">
+                                <div class=" f_c_start " style="width: 100%;">
+                                    <h1>
+                                        {{course.title}}
+                                    </h1>
+                                    <h3>
+                                       by {{course.author.username}}
+                                    </h3>
+                                </div>
+                                    <div class="f_c_start" style="width: 100%; margin-top: 20px;" >
+                                    <h5>
+                                        {{course.course_length}} hours
+                                    </h5>
+                                    <h2>
+                                        {{course.price}} $
+                                        </h2>
+                                    </div>
+                               
+                            </div>
+            
+                            <div class="course_card_image">
+                                <img src="{{ course.course_image.url }}" style="border-radius: 10px;" alt="img">
+                            </div>
+                          
+                        
+            
+                        
+                     </a>
+                {% endfor %}
+                        
+                </div>
+
+            </div>
+          
+        </div>
+    </div>
+{% endblock content %}
+    

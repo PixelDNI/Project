@@ -1,0 +1,88 @@
+{% extends 'contentCreator/base.html' %}
+{% load static %}
+
+
+
+{% block add_css %}
+
+    <link rel="stylesheet" href="{% static 'creator/Cmodule.css' %}">
+{% endblock add_css %}
+
+
+{% block content %}
+<div style="width: 100%;" class="f_c">
+    <div id="course_header" class="f_r_space_around" style="">
+        <div style="width: 80%; height: 100%;" class="f_r_space_around">
+            <div id='header_elements_container' class="f_c_space_around">
+                <div id="title_container">
+                    <h1>{{course.title|safe}}</h1>
+                </div>
+                <div id="description_container">
+                    <h3>{{course.description|safe}}</h3>
+                </div>
+                <div class="f_r_space_around" style="width: 5rem; margin-top: 1rem;">
+                    <img src="{% static 'images/clock.png' %}" alt="" style="width: 20px; height: 20px;">
+                    <p>{{course.course_length}} 
+                        
+                        {% if course.course_length > 1 %}
+                            hours
+                        {% else %}
+                            hour
+                        {% endif %}
+                             </p>
+                </div>
+            </div>
+
+            <div>
+                <img src="{{course.course_image.url}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div id="course_content_container" class="f_c_space_around">
+        <div id="buttons_container" class="f_c_space_around">
+            
+            <a href="{% url 'add_module' course.id %}" class="course_bt">Add Modules+</a>
+            <a href="{% url 'update_course' course.id %}" class="course_bt" >Update</a>
+            <a href="{% url 'delete_course' course.id %}" class="course_bt">Delete</a>
+        </div>
+        {{course.course_content|safe}}
+        <div style="width: 100%;">
+            <h1>Course program</h1>
+            <div class="f_c_start" style="width: 100%;">
+                {% for module in modules %}
+                <div class="f_r" style="width: 94.5%;">
+                    <a href="{% url 'update_module' course.id module.id %}" class="module_container f_r_start">
+                        <!-- <span style="height: 100%; width: 5px; background: #000;"></span> -->
+                        {% if module.image is not None %}
+                            <img src="{{module.image.url}}" alt="">
+                        {% endif %}
+                            
+                        <li style="font-size: 25px; color: rgb(5, 5, 5);">{{ module.title }}</li>
+                        
+                    </a>
+                    <!-- <div><img src="{% static 'images/edit.png' %} " alt="" class="edit_icon"></div> -->
+                </div>
+                    <div style="width: 100%; " class="f_c" >
+                        {% for lecture in lectures %}
+                            {% if lecture.course_module == module %}
+                            <div class="f_r" style="width: 92.5%; align-items: flex-end; ">
+                                <div style="height: 69px; width: 10px; background: #66cc66; display: inline;"><p></p></div>
+                                <a href="{% url 'lecture_detail' lecture.id %}" class="lecture_container">
+                                    <p style="margin-left: 2rem; font-size: 20px; padding: 6px 0;">{{ lecture.title }}</p> 
+                                </a>
+                            </div>
+                    
+                            {% endif %}
+                        {% endfor %}
+                        <div class="f_r_space_between" style="width: 77%;"> 
+                            <div></div><a href="{% url 'add_lecture' course.id module.id %}" class="add_lecture_bt">+</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
